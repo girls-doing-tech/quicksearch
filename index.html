@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Domain Combobox</title>
+  </head>
+  <body>
+    <label for="domainSelector">Select a domain:</label>
+    <select id="domainSelector"></select>
+
+    <script>
+      /*fetch(
+        'https://secure.disoft-tech.com:443/Disoft_RestFul_Api/resources/tayba_test/IntCrossingLightAll',
+        {
+          method: 'GET',
+          "Access-Control-Allow-Origin: *"
+         
+          headers: {
+            'Content-type': 'application/json',
+          },
+        }
+      )*/
+      const domainSelector = document.getElementById('domainSelector')
+      fetch(
+        'https://proxy.cors.sh/https://secure.disoft-tech.com:443/Disoft_RestFul_Api/resources/tayba_test/IntCrossingLightAll',
+        {
+          headers: {
+            'x-cors-api-key': 'temp_c9c7584e09e6b3603708e5f7032d8fb4',
+          },
+        }
+      )
+        .then((response) => response.json())
+        .then((domains) => {
+          console.log(domains.INTLISTCROSSINGLIGHTALL)
+          domains.INTLISTCROSSINGLIGHTALL.forEach((domain) => {
+            console.log(domain)
+            const option = document.createElement('option')
+            option.value = domain.DB_CROSSING_NAME
+            option.text = domain.DB_CROSSING_NAME
+            domainSelector.appendChild(option)
+          })
+        })
+        .catch((error) => {
+          console.error('Error fetching domain names:', error)
+        })
+
+      domainSelector.addEventListener('change', (event) => {
+        const selectedDomain = event.target.value
+        console.log('Selected domain:', selectedDomain)
+      })
+    </script>
+  </body>
+</html>
