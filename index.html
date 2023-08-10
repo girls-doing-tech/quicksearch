@@ -23,12 +23,7 @@
       )*/
       const domainSelector = document.getElementById('domainSelector')
       fetch(
-        'https://proxy.cors.sh/https://secure.disoft-tech.com:443/Disoft_RestFul_Api/resources/tayba_test/IntCrossingLightAll',
-        {
-          headers: {
-            'x-cors-api-key': 'temp_c9c7584e09e6b3603708e5f7032d8fb4',
-          },
-        }
+        'https://secure.disoft-tech.com:443/Disoft_RestFul_Api/resources/tayba_test/IntCrossingLightAll'
       )
         .then((response) => response.json())
         .then((domains) => {
