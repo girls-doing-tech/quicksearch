@@ -11,7 +11,7 @@
 
     <script>
       /*fetch(
-        'https://secure.disoft-tech.com:443/Disoft_RestFul_Api/resources/tayba_test/IntCrossingLightAll',
+        'https://transferrr.fly.dev/Disoft_RestFul_Api/resources/tayba_test/IntCrossingLightAll',
         {
           method: 'GET',
           "Access-Control-Allow-Origin: *"
@@ -22,17 +22,19 @@
         }
       )*/
       const domainSelector = document.getElementById('domainSelector')
-      fetch(
-        'https://secure.disoft-tech.com:443/Disoft_RestFul_Api/resources/tayba_test/IntCrossingLightAll'
-      )
+      const proxyUrl = 'http://localhost:3000/proxy'
+      const externalUrl =
+        'https://secure.disoft-tech.com/Disoft_RestFul_Api/resources/Sawa_Api/S1_Branches?pUName=10921372&pUToken=fvoxk8djufcpez8dus91vacy5dp19jza&pB_Userid=34&pCompanyid=2'
+
+      fetch(`${proxyUrl}?url=${encodeURIComponent(externalUrl)}`)
         .then((response) => response.json())
         .then((domains) => {
-          console.log(domains.INTLISTCROSSINGLIGHTALL)
-          domains.INTLISTCROSSINGLIGHTALL.forEach((domain) => {
+          console.log(domains.S_BRANCHESLIST)
+          domains.S_BRANCHESLIST.forEach((domain) => {
             console.log(domain)
             const option = document.createElement('option')
-            option.value = domain.DB_CROSSING_NAME
-            option.text = domain.DB_CROSSING_NAME
+            option.value = domain.DB_BRANCH_NAME_AR
+            option.text = domain.DB_BRANCH_NAME_AR
             domainSelector.appendChild(option)
           })
         })
